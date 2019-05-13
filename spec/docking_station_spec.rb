@@ -20,7 +20,13 @@ describe DockingStation do
 
     expect(station.dock_bike).to eq(true)
 
-  end
+	end
+	
+	it "can check a bike is docked" do 
+		station = DockingStation.new
+		bike = bike
 
+		expect(bike).to respond_to(:docked?)
+	end 
 
 end

@@ -1,5 +1,11 @@
 class Bike
-    def working?
-        true
-    end
+	attr_reader :bike
+
+  def initialize
+		@bike = []
+  end
+
+	def working?
+		true
+	end
 end
