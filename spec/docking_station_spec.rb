@@ -9,9 +9,18 @@ describe DockingStation do
 
  end
 
-	it "gets a bike and expects it to be working" do 
+	it "gets a bike and expects it to be working" do
 		bike = Bike.new
 
 		expect(bike.working?).to eq(true)
 	end
+
+  it "can dock a bike" do
+    station = DockingStation.new
+
+    expect(station.dock_bike).to eq(true)
+
+  end
+
+
 end
