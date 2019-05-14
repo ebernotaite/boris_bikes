@@ -1,13 +1,13 @@
 require 'docking_station.rb'
 
 describe DockingStation do
- it "responds to release bike method" do
-	docking_station = DockingStation.new
-	docking_station.release_bike
+#  it "responds to release bike method" do
+# 	docking_station = DockingStation.new
+# 	docking_station.release_bike
 
-	expect(docking_station).to respond_to(:release_bike)
+# 	expect(docking_station).to respond_to(:release_bike)
 
- end
+#  end
 
 	it "gets a bike and expects it to be working" do
 		bike = Bike.new
@@ -31,6 +31,13 @@ describe DockingStation do
 		docking_station.dock(bike)
 		
 		expect(docking_station.bike).to eq(bike)
-	end
+  end
+  
+  it 'can throw error if no bike is docked' do
+    station = DockingStation.new
+    station.dock(nil)
+    expect{station.release_bike}.to raise_error("this is an error")
+  end
+
 
 end
