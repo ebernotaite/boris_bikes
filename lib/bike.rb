@@ -7,5 +7,9 @@ class Bike
 
 	def working?
 		true
-	end
+  end
+  
+  def docked?
+    true
+  end
 end

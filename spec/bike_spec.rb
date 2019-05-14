@@ -6,4 +6,10 @@ describe Bike do
         
         expect(bike).to respond_to(:working?)
     end 
+
+    it "can respond to docked" do 
+      bike = Bike.new
+  
+      expect(bike).to respond_to(:docked?)
+    end 
 end

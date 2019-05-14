@@ -1,4 +1,7 @@
 class DockingStation
+
+    
+
     def release_bike
 			Bike.new
     end
@@ -7,7 +10,4 @@ class DockingStation
       true
     end
 
-    def docked?
-			
-		end
 end
