@@ -15,15 +15,22 @@ describe DockingStation do
 		expect(bike.working?).to eq(true)
 	end
 
+	
   it "can dock a bike" do
-    station = DockingStation.new
+		station = DockingStation.new
+		bike = Bike.new
 
-    expect(station.dock_bike).to eq(true)
-
+    expect(station.dock(bike)).to eq(bike)
 	end
 
-  it "can show a docked bike" do
-    expect(docking_station).to respond_to(:show_bike)
-  end
+
+	it "can show a docked bike" do
+		docking_station = DockingStation.new
+		bike = Bike.new
+
+		docking_station.dock(bike)
+		
+		expect(docking_station.bike).to eq(bike)
+	end
 
 end
