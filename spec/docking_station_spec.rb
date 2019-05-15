@@ -9,21 +9,32 @@ describe DockingStation do
 	end
 
   it "can dock a bike" do
-		expect(station.dock(bike)).to eq(bike)
+		expect(station.dock(bike)).to eq([bike])
 	end
 
 
 	it "can show a docked bike" do
 	  station.dock(bike)
-		expect(station.bike).to eq(bike)
+		expect(station.bikes).to eq([bike])
   end
-  
+
   it 'can throw error if no bike is docked' do
     expect{station.release_bike}.to raise_error("there is no bike to release")
   end
 
   it 'can throw error if there is a bike docked already' do
-    station.dock(bike)
-    expect{station.dock(bike)}.to raise_error("there is a bike docked already")
+    20.times do
+    	station.dock(bike)
+		end
+
+    expect{station.dock(bike)}.to raise_error("The docking station is full, go away!")
   end
+
+	it 'can have a default capacity of 20 bikes' do
+		20.times do
+			station.dock(bike)
+		end
+
+		expect(station.bikes.count).to eq(20)
+	end
 end
