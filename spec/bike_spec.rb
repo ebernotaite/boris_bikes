@@ -10,7 +10,7 @@ describe Bike do
   end 
 
   it 'can be reported as broken on return to docking station' do
-    docking_station.dock(bike, true)
+    bike.report_broken
     expect(bike.broken).to eq true
   end
 end

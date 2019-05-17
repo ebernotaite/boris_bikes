@@ -1,8 +1,8 @@
 class Bike
   attr_accessor :broken
 
-  def initialize 
-    @broken = false
+  def report_broken
+    @broken = true
   end
 
 	def working? 

@@ -1,3 +1,5 @@
+require 'van.rb'
+
 class DockingStation
   DEFAULT_CAPACITY = 20
   attr_reader :bikes, :capacity
@@ -10,10 +12,17 @@ class DockingStation
     empty? || @bikes[-1].broken ? raise("can't release bike") : @bikes.pop
   end
 
-  def dock(bike, broken)
-    bike.broken = broken
+  def dock(bike)
     full? ? raise("The docking station is full, go away!")
                           : @bikes << bike 
+  end
+
+  def release_broken_bike(van)
+    @bikes.each do |bike|
+      if bike.broken 
+        van.broken_bikes << bike
+      end
+    end
   end
 
   private
