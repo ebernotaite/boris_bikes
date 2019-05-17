@@ -10,32 +10,29 @@ describe DockingStation do
 	end
 
   it "can dock a bike" do
-		expect(station.dock(bike)).to eq([bike])
+		expect(station.dock(bike, false)).to eq([bike])
 	end
 
-
 	it "can show a docked bike" do
-	  station.dock(bike)
+	  station.dock(bike, false)
 		expect(station.bikes).to eq([bike])
   end
 
   it 'can throw error if no bike is docked' do
-    expect{station.release_bike}.to raise_error("there is no bike to release")
+    expect{station.release_bike}.to raise_error("can't release bike")
   end
 
   it 'can throw error if there is a bike docked already' do
     default_capacity.times do
-    	station.dock(bike)
-		end
-
-    expect{station.dock(bike)}.to raise_error("The docking station is full, go away!")
+      station.dock(bike, false)
+    end
+    expect{station.dock(bike, false)}.to raise_error("The docking station is full, go away!")
   end
 
 	it 'can have a default capacity of 20 bikes' do
 		default_capacity.times do
-			station.dock(bike)
-		end
-
+      station.dock(bike, false)
+    end
 		expect(station.bikes.count).to eq(default_capacity)
   end
   
@@ -47,7 +44,7 @@ describe DockingStation do
   it 'uses user specified capacity' do
     station = DockingStation.new(30)
     30.times do
-      station.dock(bike)
+      station.dock(bike, false)
     end
     expect(station.bikes.count).to eq(30)
   end
@@ -55,8 +52,20 @@ describe DockingStation do
   it 'will not go over user specified capacity' do
     station = DockingStation.new(30)
     30.times do
-      station.dock(bike)
+      station.dock(bike, false)
     end
-    expect{station.dock(bike)}.to raise_error "The docking station is full, go away!"
+    expect{station.dock(bike, false)}.to raise_error "The docking station is full, go away!"
+  end
+
+  it 'will not release a broken bike' do
+    station.dock(bike, true)
+    expect{station.release_bike}.to raise_error("can't release bike")
+  end
+
+  it ' will accept bikes whether they are broken or not' do
+    station.dock(bike, true)
+    expect(station.bikes.count).to eq(1)
   end
 end
+
+

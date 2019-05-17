@@ -7,12 +7,13 @@ class DockingStation
   end
 
   def release_bike
-    empty? ? raise("there is no bike to release") : @bikes.pop
+    empty? || @bikes[-1].broken ? raise("can't release bike") : @bikes.pop
   end
 
-  def dock(bike)
+  def dock(bike, broken)
+    bike.broken = broken
     full? ? raise("The docking station is full, go away!")
-                          : @bikes << bike
+                          : @bikes << bike 
   end
 
   private
